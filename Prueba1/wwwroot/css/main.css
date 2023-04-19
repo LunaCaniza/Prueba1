@@ -1,0 +1,260 @@
+﻿a {
+    color: #0b477a;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+    a:hover {
+        color: #082c4b;
+        text-decoration: none;
+    }
+
+    a:not([href]) {
+        color: inherit;
+        text-decoration: none;
+    }
+
+        a:not([href]):hover {
+            color: inherit;
+            text-decoration: none;
+        }
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: #ffffff
+}
+
+
+.sidebar {
+    background-color: #082c4b;
+}
+
+.sidebar-dark-primary {
+    background-color: #082c4b;
+}
+
+main-sidebar {
+    background-color: #082c4b;
+}
+
+brand-link {
+    background-color: #082c4b;
+}
+
+main-header {
+    background-color: #082c4b;
+}
+
+
+.float-right {
+    float: right !important;
+}
+
+btn-success {
+    float: right;
+}
+
+img.rounded-corners {
+    border-radius: 50%;
+}
+
+.input-group-text {
+    background-color: #ffffff;
+}
+
+[class*="icheck-"] {
+    min-height: 22px;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+    padding-left: 0px;
+}
+
+.icheck-inline {
+    display: inline-block;
+}
+
+    .icheck-inline + .icheck-inline {
+        margin-left: .75rem;
+        margin-top: 6px;
+    }
+
+[class*="icheck-"] > label {
+    padding-left: 29px !important;
+    min-height: 22px;
+    line-height: 22px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+[class*="icheck-"] > input:first-child {
+    position: absolute !important;
+    opacity: 0;
+    margin: 0;
+}
+
+    [class*="icheck-"] > input:first-child:disabled {
+        cursor: default;
+    }
+
+    [class*="icheck-"] > input:first-child + label::before,
+    [class*="icheck-"] > input:first-child + input[type="hidden"] + label::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border: 1px solid #D3CFC8;
+        border-radius: 0px;
+        margin-left: -29px;
+    }
+
+    [class*="icheck-"] > input:first-child:checked + label::after,
+    [class*="icheck-"] > input:first-child:checked + input[type="hidden"] + label::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 7px;
+        height: 10px;
+        border: solid 2px #fff;
+        border-left: none;
+        border-top: none;
+        transform: translate(7.75px, 4.5px) rotate(45deg);
+        -ms-transform: translate(7.75px, 4.5px) rotate(45deg);
+    }
+
+[class*="icheck-"] > input[type="radio"]:first-child + label::before,
+[class*="icheck-"] > input[type="radio"]:first-child + input[type="hidden"] + label::before {
+    border-radius: 50%;
+}
+
+[class*="icheck-"] > input:first-child:not(:checked):not(:disabled):hover + label::before,
+[class*="icheck-"] > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-width: 2px;
+}
+
+[class*="icheck-"] > input:first-child:disabled + label,
+[class*="icheck-"] > input:first-child:disabled + input[type="hidden"] + label,
+[class*="icheck-"] > input:first-child:disabled + label::before,
+[class*="icheck-"] > input:first-child:disabled + input[type="hidden"] + label::before {
+    pointer-events: none;
+    cursor: default;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+
+.icheck-default > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-default > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #adadad;
+}
+
+.icheck-default > input:first-child:checked + label::before,
+.icheck-default > input:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.icheck-default > input:first-child:checked + label::after,
+.icheck-default > input:first-child:checked + input[type="hidden"] + label::after {
+    border-bottom-color: #333;
+    border-right-color: #333;
+}
+
+.icheck-primary > input:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-primary > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #2e6da4;
+}
+
+[class*=icheck-] > label {
+    padding-left: 29px !important;
+    min-height: 22px;
+    line-height: 22px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+[class*=icheck-] > input:first-child + label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #D3CFC8;
+    border-radius: 0;
+    margin-left: -29px;
+}
+
+[class*=icheck-] > input:first-child:checked + label::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 7px;
+    height: 10px;
+    border: 2px solid #fff;
+    border-left: none;
+    border-top: none;
+    transform: translate(7.75px,4.5px) rotate(45deg);
+    -ms-transform: translate(7.75px,4.5px) rotate(45deg);
+}
+
+[class*=icheck-] > input:first-child:disabled + label, [class*=icheck-] > input:first-child:disabled + label::before {
+    pointer-events: none;
+    cursor: default;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+
+.icheck-belizehole > input:first-child:checked + label::before {
+    background-color: #063970;
+    border-color: #063970;
+}
+
+.btn-custom {
+    color: #ffffff;
+    background-color: #082c4b;
+    border-color: #082c4b;
+    box-shadow: none;
+}
+
+    .btn-custom:hover {
+        color: #ffffff;
+        background-color: #093152;
+        border-color: #093152;
+        box-shadow: rgba(4, 19, 33, 0.15) 0px 0.5px 0.5px 0.5px;
+    }
+
+    .btn-custom:focus {
+        color: #ffffff;
+        background-color: #093152;
+        border-color: #093152;
+        box-shadow: none;
+    }
+
+    .btn-custom:disabled {
+        color: #ffffff;
+        background-color: #082c4b;
+        border-color: #082c4b;
+    }
+
+    .btn-custom:hover, .btn-custom:active, .btn-custom:focus {
+        color: #ffffff !important;
+        background-color: #093152 !important;
+        border-color: #093152 !important;
+    }

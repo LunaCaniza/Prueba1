@@ -1,0 +1,138 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewData["HideDeleteButton"] = true;
+    ViewData["HideEditButton"] = true;
+}
+@section scripts {
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/js/pages/index.js"></script>
+
+    <script>
+
+        function ToggleHandledAjax(id) {
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            $.ajax({
+                url: '/MVCExceptions/ToggleHandled/' + id,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        toastr.success("Status alterado com sucesso.");
+                        table.draw();
+                    }
+                    else {
+                        toastr.error("Erro:" + data.message);
+                    }
+                },
+                error: function (request, error) {
+                    toastr.error("Erro:" + JSON.stringify(request));
+                }
+            });
+        }
+
+    $(document).ready(function () {
+        $("#pageSize").val(@ViewBag.pageSize);
+
+        table = $('#BugsTable').DataTable
+            ({
+                processing: true,
+                serverSide: true,
+                order: [[0, "desc"]],
+                ajax: {
+                    url: "Index",
+                    type: "POST"
+                },
+                columns: [
+                    { "data": "id", "name": "Id" },
+                    { "data": "guid", "name": "Guid" },
+                    { "data": "user.nome", "name": "UserId" },
+                    { "data": "handled", "name": "Handled" },
+                    { "data": "created_at", "name": "Created_at" },
+                ],
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+                },
+                columnDefs: [
+                    {
+                        "render": function (data, type, row) {
+
+                            if (data != null) {
+                                return '<strong class="badge badge-success">Sim</strong>';
+                            } else {
+                                return '<a href="#" onClick="ToggleHandledAjax(' + row.id + ')"><strong class="badge badge-danger">Não</strong></a>';
+                            }
+                        },
+                        "targets": 3
+                    },
+                    {
+                        "render": function (data, type, row) {
+                            let date = new Date(data);
+                            return date.toLocaleDateString();
+                        },
+                        "targets": 4
+                    },
+                    {
+                        className: "text-right",
+                        render: function (data, type, row) {
+                            return RenderTableActions("MVCExceptions", row.id, details = true, edit = false, del =  true);
+                        },
+                        targets: 5
+                    }
+                ],
+                pageLength: 25
+            });
+
+    });
+    </script>
+}
+@section Styles
+{
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css" />
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <label class="h6">Bugs Splat</label>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <table id="BugsTable" class="table table-responsive-sm table-striped table-sm bg-white small">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Guid</th>
+                            <th>Usuario</th>
+                            <th>Handled</th>
+                            <th>Criado em</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

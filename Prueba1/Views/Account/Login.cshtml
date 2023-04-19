@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!--icon-->
+    <link rel="icon" href="~/img/AdminLTELogo.png">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body>
+    <div class="container w-75 bg-transparent mt-5 shadow">
+        <div class="row align-items-stretch">
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
+                <!--Imagendelotrolado-->
+            </div>
+            <div class="col bg-transparent p-5">
+                <div class="text-center">
+                    <img src="~/img/usuario.png" width="100" alt="" />
+                </div>
+                <!--LOGIN-->
+                <form asp-action="Login" method="post">
+                    <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+                    <div class="input-group mb-3">
+                        <input type="text" name="Nombre" class="form-control" placeholder="Nombre">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="Password" class="form-control" placeholder="Contraseña">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <div class="checkbox icheck-belizehole float-left">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">Recordar mis datos</label>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="float-right">
+                                <!--<img src="~/img/email.png" width="25" alt="" />-->
+                                <a href="forgot-password.html" class="light">¿Has olvidado tu contraseña?</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/js/adminlte.min.js"></script>
+    <!-- VIEW-SCRIPTS -->
+</body>
+</html>

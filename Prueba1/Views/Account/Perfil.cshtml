@@ -1,0 +1,130 @@
+﻿@model Prueba1.Models.Usuarios
+@using System.Security.Claims
+@{
+    ViewData["UploadController"] = "Account";
+    ViewData["UploadRedirectAction"] = "Perfil";
+
+}
+<div class="row">
+    <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-user"></i> Editar Perfil
+            </div>
+            <div class="card-body">
+                <hr />
+                <form id="PerfilForm" asp-action="Perfil">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <img class="rounded-corners" src="@Model.FuetoPath()?nocache=@DateTime.Now.Ticks" style="max-height: 100px">
+                            <br />
+                            <a href="#" onclick="UploadModal(0)">Alterar Imagem Perfil</a>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <strong>@Model.Nombre</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <small>@Model.Email</small>
+                        </div>
+                    </div>
+                    <br />
+                    @if (ViewBag.Erro != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            Aconteceu um erro!
+                            <strong class="text-danger">@ViewBag.Erro</strong>.
+                        </div>
+                    }
+                    <div class="form-group row">
+                        <label for="senhaPassada" class="col-sm-4"><strong>Senha Atual:</strong></label>
+                        <input type="password" class="form-control col-sm-8" id="senhaPassada" name="senhaPassada">
+                        <label id="senhaPassada-error" class="error text-danger col-sm-12 text-right" style="display:none" for="senhaPassada"></label>
+                    </div>
+                    <br />
+                    <div class="form-group row">
+                        <label for="novaSenha" class="col-sm-4"><strong>Nova Senha:</strong></label>
+                        <input type="password" class="form-control col-sm-8" id="novaSenha" name="novaSenha">
+                        <label id="novaSenha-error" class="error text-danger col-sm-12 text-right" style="display:none" for="novaSenha"></label>
+                    </div>
+                    <div class="form-group row">
+                        <label for="confirmarSenha" class="col-sm-4"><strong>Confirmar Nova Senha:</strong></label>
+                        <input type="password" class="form-control col-sm-8" id="confirmarSenha" name="confirmarSenha" required>
+                        <label id="confirmarSenha-error" class="error text-danger col-sm-12 text-right" style="display:none" for="confirmarSenha"></label>
+                    </div>
+                    <div class="form-group form-actions text-right">
+                        <button type="submit" class="btn btn-sm btn-primary">Atualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+
+    <script src="~/js/UploadFile.js"></script>
+    <script src="~/js/IndexDefault.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+    <script>
+
+    function UploadModal(route) {
+
+        $("#uploadId").val(@Model.Id);
+        $("#uploadRoute").val(route);
+
+        $("#fileUploadModal").modal();
+    }
+
+        $(document).ready(function () {
+
+        $("#PerfilForm").validate({
+            rules: {
+                // simple rule, converted to {required:true}
+                senhaPassada: "required",
+                novaSenha:
+                {
+                    required: true,
+                    minlength: 6
+                },
+                // compound rule
+                confirmarSenha: {
+                    required: true,
+                    minlength: 6,
+                    equalTo: "#novaSenha"
+                }
+            },
+            messages: {
+                senhaPassada: "Este Campo é obrigatório",
+                novaSenha:
+                {
+                    required: "Este Campo é obrigatório",
+                    minlength: "Minimo de 6 caracteres."
+                },
+                // compound rule
+                confirmarSenha: {
+                    required: "Este Campo é obrigatório",
+                    minlength: "Minimo de 6 caracteres.",
+                    equalTo: "A senha e a confirmação devem coincidir"
+                }
+            }
+        });
+
+    });
+
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@section Modals
+{
+    <partial name="_defaultFileUploader" />
+}

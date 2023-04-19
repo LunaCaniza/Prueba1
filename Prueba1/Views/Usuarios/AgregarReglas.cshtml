@@ -1,0 +1,170 @@
+﻿@model Prueba1.Models.Usuarios
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+
+        <div class="card card-outline card-success">
+            <div class="card-header">
+                <h3 class="card-title">Agregar Reglas al Usuario @Model.Nombre</h3>
+                <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <label class="ml-2 CreateLabel font-weight-light">@Model.Nombre</label>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label asp-for="Email" class="control-label"></label>
+                        <label class="ml-2 CreateLabel font-weight-light">@Model.Email</label>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="AddRegla" id="AddReglaForm" method="post">
+                            <table class="table table-head-fixed text-nowrap table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="70%">
+                                            Regla
+                                        </th>
+                                        <th>
+                                            &nbsp;
+                                        </th>
+                                    </tr>
+                                    <tr id="TrForm">
+                                        <th>
+                                            <input id="ReglaBuscaIpt" class="form-control form-control-sm" />
+                                        </th>
+                                        <th>
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i id="AddReglaBtnIcon" class="fas fa-plus"></i>
+                                            </button>
+                                        </th>
+                                    </tr>
+
+                                </thead>
+                                <tbody id="TableBody">
+                                    @foreach (var regla in Model.Permisos)
+                                    {
+                                        <tr>
+                                            <td>@regla.Regla</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+@section Modals
+{
+    <!-- Modal -->
+    <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-action="EditRegla" id="EditReglaForm" method="post">
+
+                    <div class="modal-body">
+                        <input type="hidden" name="Id" id="EditId" value="" />
+
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="font-weight-bold">Produto:</span><br />
+                                <input id="ProdutoBuscaEditIpt" class="form-control form-control-sm ml-2" />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <span class="font-weight-bold">Quantidade:</span><br />
+                                <input id="QuantidadeEdit" name="Quantidade" class="form-control form-control-sm ml-2" type="number" min="0" value="0" />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <span class="font-weight-bold">Valor Unitário:</span><br />
+                                <input id="UnitarioEdit" name="Unitario" class="form-control form-control-sm ml-2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Cambios</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/lib/jquery-autocomplete/jquery.autocomplete.min.js"></script>
+    <script>function EditPopUp(id, produtoId, desc, quantidade, unitario)
+        {
+            //Setar Valores dos inputs no Formulario de Edição
+            $("#EditId").val(id);
+            $('#ProdutoBuscaEditIpt').val(desc);
+            $("#ProdutoEditId").val(produtoId);
+            $("#UnitarioEdit").val(unitario);
+            $("#QuantidadeEdit").val(quantidade);
+
+            //Fazer Modal Aparecer na tela
+            $("#EditModal").modal('show');
+        }
+
+        $(document).ready(function () {
+            $('#ProdutoBuscaIpt').autocomplete({
+                serviceUrl: '/Pedidos/AutoCompleteProduto',
+                onSelect: function (suggestion) {
+
+                    $("#ProdutoId").val(suggestion.data);
+                    $("#Unitario").val(suggestion.unitario);
+                    $("#Total").val(suggestion.unitario);
+                    $("#Quantidade").val(1);
+
+                    $("#QuantidadeEdit").focus();
+                }
+            });
+
+            $('#ProdutoBuscaEditIpt').autocomplete({
+                serviceUrl: '/Pedidos/AutoCompleteProduto',
+                triggerSelectOnValidInput: false,
+                onSelect: function (suggestion) {
+
+                    $("#ProdutoEditId").val(suggestion.data);
+                    $("#UnitarioEdit").val(suggestion.unitario);
+                    $("#TotalEdit").val(suggestion.unitario);
+                    $("#QuantidadeEdit").val(1);
+
+                    $("#QuantidadeEdit").focus();
+                }
+            });
+
+        });</script>
+}
+
+@section Styles
+{
+    <link href="~/lib/jquery-autocomplete/styles.css" rel="stylesheet" />
+}

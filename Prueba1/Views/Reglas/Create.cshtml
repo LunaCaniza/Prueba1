@@ -1,0 +1,42 @@
+﻿@model Prueba1.Models.Reglas
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-action="Create" method="post">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="card card-outline card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Crear Reglas</h3>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Regla" class="control-label"></label>
+                        <input asp-for="Regla" class="form-control" />
+                        <span asp-validation-for="Regla" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MaxId" class="control-label"></label>
+                        <select asp-for="MaxId" class="form-control" asp-items="ViewBag.Max">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

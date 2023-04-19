@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@section Scripts
+{
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/pages/index.js"></script>
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+
+    <script>$(document).ready(function () {
+
+            table = $("#MainTable").DataTable({
+                processing: true,
+                serverSide: true,
+                paging: true,
+                ordering: true,
+                searching: true,
+                ajax: {
+                    url: "/Reglas/IndexData/",
+                    type: "POST"
+                },
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json",
+                    decimal: ",",
+                    thousands: "."
+                },
+                pageLength: 25,
+                columns: [
+                    { data: "id", name: "Id" },
+                    { data: "regla", name: "Descripción" },
+                    { data: "maxId", name: "Regla Max." },
+                ],
+                columnDefs: [
+                    {
+                        targets: [2],
+                        className: "text-right",
+                        render: function (data, type, row) {
+                            if (data == null)
+                                return "-";
+                            else
+                                return data;
+                        }
+                    },
+                    {
+                        targets: [3],
+                        className: "text-right",
+                        render: function (data, type, row) {
+                            return RenderTableActions("Reglas", row.id, details = false);
+                        }
+                    }
+                ]
+            });
+        });</script>
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+}
+<div class="card">
+    <div class="card-header">
+        <label class="h6">Reglas</label>
+        <a class="btn btn-success btn-sm float-right" asp-action="Create">
+            Nuevo
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <table id="MainTable" class="table table-bordered small table-striped dataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Descripción
+                            </th>
+                            <th>
+                                Regla Max.
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

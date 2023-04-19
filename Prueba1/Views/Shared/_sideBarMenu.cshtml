@@ -1,0 +1,77 @@
+﻿<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+        <li class="nav-header">Catastros</li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-address-book"></i>
+                <p>
+                    Catastros
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                @*<hr />*@
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Productos" class="nav-link">
+                        <i class="nav-icon fas fa-shapes"></i>
+                        <p>Productos</p>
+                    </a>
+                </li>
+                <hr />
+                @*<li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>
+                            Listados
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>*@
+            </ul>
+        </li>
+
+        <li class="nav-header">Sistema</li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-laptop"></i>
+                <p>
+                    Sistema
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Usuarios" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                @*<li class="nav-item">
+                    <a asp-action="Index" asp-controller="Reglas" class="nav-link">
+                        <i class="nav-icon fas fa-handshake"></i>
+                        <p>Reglas</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Permisos" class="nav-link">
+                        <i class="nav-icon fas fa-ban"></i>
+                        <p>Permisos</p>
+                    </a>
+                </li>*@
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="MVCExceptions" class="nav-link">
+                        <i class="nav-icon fas fa-bug"></i>
+                        <p>Exceptions</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a asp-action="Logout" asp-controller="Account" class="nav-link">
+                <i class="nav-icon fas fa-power-off"></i>
+                <p>Salir</p>
+            </a>
+        </li>
+    </ul>
+</nav>
