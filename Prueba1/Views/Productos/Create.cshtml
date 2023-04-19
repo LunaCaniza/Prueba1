@@ -39,10 +39,10 @@
 
                 </div>
                 <div class="card-footer text-right">
-                    <a class="btn btn-danger" asp-action="Index">
+                    <a class="btn btn-op" asp-action="Index">
                         Volver
                     </a>
-                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <input type="submit" value="Guardar" class="btn btn-op" />
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -53,4 +53,28 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@section Styles
+{
+
+    <link href="~/lib/jquery-autocomplete/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/path/to/select2-bootstrap4.min.css">
+
+    <style>
+        btn-op {
+            color: #ffffff;
+            background-color: #082c4b !important;
+            border-color: #082c4b !important;
+            box-shadow: none !important;
+        }
+
+        .btn-op:hover {
+            color: #ffffff;
+            background-color: #082c4b !important;
+            border-color: #082c4b !important;
+            box-shadow: none !important;
+        }
+    </style>
 }
