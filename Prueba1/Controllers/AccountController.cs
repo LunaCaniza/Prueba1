@@ -18,6 +18,7 @@ namespace Prueba1.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        //
         private readonly Prueba1Context _context;
 
         public AccountController(Prueba1Context context)
